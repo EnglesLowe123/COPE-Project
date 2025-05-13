@@ -16,8 +16,8 @@ Instruction Set Format:
   Operand2: 3 bits  
 
 Input Program (in binary):  
-  00001011  // ADD R0, R3  
-  00111000  // MOV R1, #0  
+  00000011  // ADD R0, R3  
+  00101000  // MOV R1, #0  
 
 Execution Log:
   R0 = R0 + R3 = 7  
@@ -26,7 +26,7 @@ Execution Log:
 
 ## 3.工作分工
 
-* 罗琰佳：指令集、映射设计与编码，做演示；
+* 罗琰佳：指令集设计与编码，做演示；
 
 * 邢菲琳：解释器与执行引擎实现；
 
@@ -37,27 +37,6 @@ Execution Log:
 ## 4.代码展示
 
 ```c
-/*
-项目 30：微型指令集架构设计与解释器实现
-1.自定义一个 8 位微型指令集（例如指令长度为 8-bit，支持基本算术与逻辑运算、跳转、内存访问）。
-2.设计其编码格式、寄存器与内存结构。
-3.实现一个解释器可以解析、加载并运行该指令集程序，并输出执行日志。
-4.要求不得使用已有汇编解释器或虚拟机库，指令解析必须自己手动实现。
-
-Instruction Set Format:  
-  Opcode: 3 bits  
-  Operand1: 2 bits  
-  Operand2: 3 bits  
-
-Input Program (in binary):  
-  000 01 011  // ADD R0, R3  这里可能需要做映射（因为正常是00代表R0，01代表R1，以此类推）
-  001 11 000  // MOV R1, #0  
-
-Execution Log:
-  R0 = R0 + R3 = 7  //这里可以看出R0初始值可以是4，而R3初始值可以是3
-  R1 = 0
-*/
-
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
