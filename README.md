@@ -211,7 +211,7 @@ R1 = 0
 | 100    | ST  |   MEM[op2] = R[op1]     |
 | 101    | JMP   | PC = op2（jump） |
 | 110    | AND   | R[op1] = R[op1] & R[op2]               |
-| 111    | OR  | R[op1] = R[op1] | R[op2]          |
+| 111    | OR  | R[op1] = R[op1] \| R[op2]          |
 
 
 
