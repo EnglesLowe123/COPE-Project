@@ -108,18 +108,13 @@ void execute(uint8_t instr) {
             PC = op2;
             printf("JMP to %d\n", op2);
             return;
-        case 0b110:  // JZ
-            if (R[op1] == 0) {
-                PC = op2;
-                printf("JZ: R%d == 0, jump to %d\n", op1, op2);
-                return;
-            } else {
-                printf("JZ: R%d != 0, no jump\n", op1);
-            }
+        case 0b110:  // AND
+            R[op1] = R[op1] & R[op2];
+            printf("R%d = R%d & R%d = %d\n", op1, op1, op2, R[op1]);
             break;
-        case 0b111:  // HLT
-            running = false;
-            printf("HLT: Halting\n");
+        case 0b111:  // OR
+            R[op1] = R[op1] | R[op2];
+            printf("R%d = R%d | R%d = %d\n", op1, op1, op2, R[op1]);
             break;
         default:
             printf("Unknown opcode: %d\n", opcode);
@@ -211,12 +206,12 @@ R1 = 0
 | ------ | ---- | ------------------------------- |
 | 000    | ADD  | R[op1] ← R[op1] + R[op2]        |
 | 001    | MOV  | R[op1] ← #imm（op2 作为立即数） |
-| 010    | AND  | R[op1] ← R[op1] & R[op2]        |
-| 011    | OR   | R[op1] ← R[op1] \| R[op2]       |
-| 100    | XOR  | R[op1] ← R[op1] ^ R[op2]        |
-| 101    | LD   | R[op1] ← MEM[op2]（op2 是地址） |
-| 110    | ST   | MEM[op2] ← R[op1]               |
-| 111    | JMP  | PC ← op2（无条件跳转）          |
+| 010    | SUB  | R[op1] ← R[op1] - R[op2]        |
+| 011    | LD   | R[op1] ← R[op1] \| R[op2]       |
+| 100    | ST  | R[op1] ← R[op1] ^ R[op2]        |
+| 101    | JMP   | PC = op2（jump） |
+| 110    | AND   | R1 & R2               |
+| 111    | OR  | R1 | R2          |
 
 
 
