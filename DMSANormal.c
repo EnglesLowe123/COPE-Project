@@ -122,6 +122,6 @@ int main() {
     R[3] = 3;
 
     run_program(program, count);
-
+    system ("pause");
     return 0;
 }
