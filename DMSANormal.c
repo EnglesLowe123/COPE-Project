@@ -69,18 +69,13 @@ void execute(uint8_t instr) {
             PC = op2;
             printf("JMP to %d\n", op2);
             return;
-        case 0b110:  // JZ
-            if (R[op1] == 0) {
-                PC = op2;
-                printf("JZ: R%d == 0, jump to %d\n", op1, op2);
-                return;
-            } else {
-                printf("JZ: R%d != 0, no jump\n", op1);
-            }
+        case 0b110:  // AND
+            R[op1] = R[op1] & R[op2];
+            printf("R%d = R%d & R%d = %d\n", op1, op1, op2, R[op1]);
             break;
-        case 0b111:  // HLT
-            running = false;
-            printf("HLT: Halting\n");
+        case 0b111:  // OR
+            R[op1] = R[op1] | R[op2];
+            printf("R%d = R%d | R%d = %d\n", op1, op1, op2, R[op1]);
             break;
         default:
             printf("Unknown opcode: %d\n", opcode);
